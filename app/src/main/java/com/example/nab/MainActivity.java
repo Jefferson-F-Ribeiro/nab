@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 // Check if the entered username and password are valid
                 if (username.equals("admin") && password.equals("password")) {
                     // Login successful, show a toast message
-                    Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Login feito com sucesso!", Toast.LENGTH_SHORT).show();
 
                 // Redirect to the HomeActivity and pass the username as an extra
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     // Login failed, show an error toast message
-                    Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Senha ou usuário inválidos.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
