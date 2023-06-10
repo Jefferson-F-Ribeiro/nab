@@ -41,15 +41,17 @@ public class HomeActivity extends AppCompatActivity {
             button3 = new Button(this);
 
             // Set text and click listeners for the Buttons
-            button1.setText("Button 1");
+            button1.setText("JOGAR");
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(HomeActivity.this, "Button 1 clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomeActivity.this, StageSelectActivity.class);
+                    intent.putExtra("user", user);
+                    startActivity(intent);
                 }
             });
 
-            button2.setText("Button 2");
+            button2.setText("RANKING");
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -57,7 +59,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
 
-            button3.setText("Button 3");
+            button3.setText("PERFIL");
             button3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
