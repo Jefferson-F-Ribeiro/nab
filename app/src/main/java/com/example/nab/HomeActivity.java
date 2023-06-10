@@ -29,11 +29,11 @@ public class HomeActivity extends AppCompatActivity {
 
         // Get the username passed from the MainActivity
         Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("username")) {
-            String username = intent.getStringExtra("username");
+        if (intent != null && intent.hasExtra("user")) {
+            User user = (User) intent.getSerializableExtra("user");
 
             // Display the username at the top of the screen
-            usernameTextView.setText("Welcome, " + username + "!");
+            usernameTextView.setText("Bem vindo, " + user.getName() + "!");
 
             // Initialize the Buttons
             button1 = new Button(this);

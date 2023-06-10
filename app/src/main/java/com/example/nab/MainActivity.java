@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button loginButton;
 
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
 
+        // Create the test user
+        this.user = new User("user", "Zack", "w.zack@mail.com", "pass", 1);
+
         // Set click listener for the login button
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,14 +38,15 @@ public class MainActivity extends AppCompatActivity {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
+
                 // Check if the entered username and password are valid
-                if (username.equals("admin") && password.equals("password")) {
+                if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                     // Login successful, show a toast message
                     Toast.makeText(MainActivity.this, "Login feito com sucesso!", Toast.LENGTH_SHORT).show();
 
                 // Redirect to the HomeActivity and pass the username as an extra
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    intent.putExtra("username", username);
+                    intent.putExtra("user", user);
                     startActivity(intent);
                 } else {
                     // Login failed, show an error toast message
