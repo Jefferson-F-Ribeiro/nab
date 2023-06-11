@@ -17,6 +17,9 @@ public class HomeActivity extends AppCompatActivity {
     private Button button2;
     private Button button3;
 
+    // Define a constant to identify the request code
+    private static final int NEW_SCREEN_REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(HomeActivity.this, StageSelectActivity.class);
                     intent.putExtra("user", user);
-                    startActivity(intent);
+                    startActivityForResult(intent, NEW_SCREEN_REQUEST_CODE);
                 }
             });
 
@@ -55,7 +58,9 @@ public class HomeActivity extends AppCompatActivity {
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(HomeActivity.this, "Button 2 clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomeActivity.this, RankingActivity.class);
+                    intent.putExtra("user", user);
+                    startActivityForResult(intent, NEW_SCREEN_REQUEST_CODE);
                 }
             });
 
@@ -63,7 +68,9 @@ public class HomeActivity extends AppCompatActivity {
             button3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(HomeActivity.this, "Button 3 clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
+                    intent.putExtra("user", user);
+                    startActivityForResult(intent, NEW_SCREEN_REQUEST_CODE);
                 }
             });
 
@@ -72,6 +79,20 @@ public class HomeActivity extends AppCompatActivity {
             buttonLayout.addView(button1);
             buttonLayout.addView(button2);
             buttonLayout.addView(button3);
+
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_SCREEN_REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null && data.hasExtra("user")) {
+                User user = (User) data.getSerializableExtra("user");
+                // Use the updated user object here
+            }
+        }
+    }
+
 }

@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class StageSelectActivity extends AppCompatActivity {
+public class RankingActivity extends AppCompatActivity {
 
     private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stage_select);
+        setContentView(R.layout.activity_ranking);
 
         // Get the User object passed from the HomeActivity
         Intent intent = getIntent();
@@ -46,7 +46,7 @@ public class StageSelectActivity extends AppCompatActivity {
         });
 
         // Add the button to the layout
-        LinearLayout layout = findViewById(R.id.stageSelectLayout);
+        LinearLayout layout = findViewById(R.id.rankingLayout);
         layout.addView(backButton);
     }
 }

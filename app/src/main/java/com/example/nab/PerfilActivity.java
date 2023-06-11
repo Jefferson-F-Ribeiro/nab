@@ -7,15 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class StageSelectActivity extends AppCompatActivity {
+public class PerfilActivity extends AppCompatActivity {
 
     private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stage_select);
+        setContentView(R.layout.activity_perfil);
 
         // Get the User object passed from the HomeActivity
         Intent intent = getIntent();
@@ -46,7 +47,7 @@ public class StageSelectActivity extends AppCompatActivity {
         });
 
         // Add the button to the layout
-        LinearLayout layout = findViewById(R.id.stageSelectLayout);
+        LinearLayout layout = findViewById(R.id.perfilLayout);
         layout.addView(backButton);
     }
 }

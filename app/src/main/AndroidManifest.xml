@@ -13,6 +13,12 @@
         android:theme="@style/Theme.NAB"
         tools:targetApi="31">
         <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RankingActivity"
+            android:exported="false" />
+        <activity
             android:name=".StageSelectActivity"
             android:exported="false" />
         <activity
