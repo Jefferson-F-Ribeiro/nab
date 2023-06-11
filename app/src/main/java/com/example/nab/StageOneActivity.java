@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -16,7 +18,9 @@ public class StageOneActivity extends AppCompatActivity {
 
     private LinearLayout gameLayout;
     private TextView counterTextView;
+    private TextView timerTextView;
     private int counter;
+    private CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,16 @@ public class StageOneActivity extends AppCompatActivity {
         counterTextView.setPadding(16, 16, 16, 16);
         rootLayout.addView(counterTextView);
 
+        // Create the timer text view
+        timerTextView = new TextView(this);
+        timerTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
+        timerTextView.setText("Time: 30");
+        timerTextView.setPadding(16, 16, 16, 16);
+        rootLayout.addView(timerTextView);
+
         // Initialize counter
         counter = 0;
 
@@ -59,6 +73,22 @@ public class StageOneActivity extends AppCompatActivity {
                 spawnCircle();
             }
         });
+
+        // Start the timer for 30 seconds
+        timer = new CountDownTimer(30000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Update the timer text
+                timerTextView.setText("Time: " + millisUntilFinished / 1000);
+            }
+
+            @Override
+            public void onFinish() {
+                // Show the final score as a toast
+                showScoreToast();
+                finish();
+            }
+        }.start();
     }
 
     private void spawnCircle() {
@@ -98,6 +128,22 @@ public class StageOneActivity extends AppCompatActivity {
     }
 
     private void updateCounterText() {
-        counterTextView.setText("Counter: " + counter);
+        counterTextView.setText("Placar: " + counter + " pontos");
+    }
+
+    private void showScoreToast() {
+        // Create a toast to display the final score
+        Toast toast = Toast.makeText(this, "Placar final: " + counter + " pontos", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Cancel the timer to prevent memory leaks
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 }
