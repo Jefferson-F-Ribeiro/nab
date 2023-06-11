@@ -54,14 +54,20 @@ public class StageSelectActivity extends AppCompatActivity {
 
         // Add 10 clickable image miniatures
         for (int i = 1; i <= 4; i++) {
+            final int imageIndex = i;
+
             ImageView imageView = new ImageView(this);
             imageView.setImageResource(R.drawable.image_miniature); // Replace with your miniature image resource
             imageView.setClickable(true);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Handle the click event for the image
-                    Toast.makeText(StageSelectActivity.this, "Image " + " clicked", Toast.LENGTH_SHORT).show();
+                    if (imageIndex == 1) {
+                        // Open a new screen for the first image
+                        Intent intent = new Intent(StageSelectActivity.this, StageOneActivity.class);
+                        intent.putExtra("user", user);
+                        startActivity(intent);
+                    }
                 }
             });
 
