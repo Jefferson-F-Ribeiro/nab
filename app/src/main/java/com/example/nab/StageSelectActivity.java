@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class StageSelectActivity extends AppCompatActivity {
 
@@ -51,13 +50,19 @@ public class StageSelectActivity extends AppCompatActivity {
         });
 
         LinearLayout layout = findViewById(R.id.stageSelectLayout);
+        layout.setBackgroundColor(Color.rgb(255, 204, 255));
 
-        // Add 10 clickable image miniatures
+        // Add 4 clickable image miniatures
         for (int i = 1; i <= 4; i++) {
             final int imageIndex = i;
 
             ImageView imageView = new ImageView(this);
-            imageView.setImageResource(R.drawable.image_miniature); // Replace with your miniature image resource
+            if(i==1){
+                imageView.setImageResource(R.drawable.stage_one);
+            }
+            else{
+                imageView.setImageResource(R.drawable.image_miniature);
+            }
             imageView.setClickable(true);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override

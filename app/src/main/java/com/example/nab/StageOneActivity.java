@@ -58,7 +58,7 @@ public class StageOneActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         ));
-        timerTextView.setText("Time: 30");
+        timerTextView.setText("Tempo: 30");
         timerTextView.setPadding(16, 16, 16, 16);
         rootLayout.addView(timerTextView);
 
@@ -79,7 +79,7 @@ public class StageOneActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 // Update the timer text
-                timerTextView.setText("Time: " + millisUntilFinished / 1000);
+                timerTextView.setText("Tempo: " + millisUntilFinished / 1000);
             }
 
             @Override

@@ -3,6 +3,7 @@ package com.example.nab;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -50,7 +51,7 @@ public class RankingActivity extends AppCompatActivity {
         LinearLayout layout = findViewById(R.id.rankingLayout);
 
         // Add 10 TextView elements
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             TextView textView = new TextView(this);
             textView.setTextAppearance(this, android.R.style.TextAppearance_Large);
             textView.setText("Stage " + (i + 1) + ": 0 pontos");
