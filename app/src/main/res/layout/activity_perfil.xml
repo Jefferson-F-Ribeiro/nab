@@ -8,9 +8,18 @@
 
     <LinearLayout
         android:id="@+id/perfilLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="411dp"
+        android:layout_height="104dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profileButtonLayout"
+        android:layout_width="410dp"
+        android:layout_height="58dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/perfilLayout"></LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
