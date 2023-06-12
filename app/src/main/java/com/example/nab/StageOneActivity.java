@@ -119,11 +119,23 @@ public class StageOneActivity extends AppCompatActivity {
         params.topMargin = y;
         circle.setLayoutParams(params);
 
+        // Set click listener for the game layout to decrement counter and spawn new circle
+        gameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Remove the circle from the game layout
+                gameLayout.removeView(circle);
+                spawnCircle(); // Spawn the next circle immediately
+                counter--;
+                updateCounterText();
+            }
+        });
+
         // Add the circle to the game layout
         gameLayout.addView(circle);
 
         // Increase the counter when the circle is added
-        counter++;
+        //counter++;
         updateCounterText();
     }
 
