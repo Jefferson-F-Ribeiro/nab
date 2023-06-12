@@ -3,6 +3,7 @@ package com.example.nab;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize the UI components
         usernameEditText = findViewById(R.id.usernameEditText);
+        usernameEditText.setTextColor(Color.BLACK);
+        usernameEditText.setHintTextColor(Color.BLACK);
         passwordEditText = findViewById(R.id.passwordEditText);
+        passwordEditText.setTextColor(Color.BLACK);
+        passwordEditText.setHintTextColor(Color.BLACK);
         loginButton = findViewById(R.id.loginButton);
 
         // Create the test user

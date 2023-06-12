@@ -3,6 +3,7 @@ package com.example.nab;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -33,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra("user")) {
             user = (User) intent.getSerializableExtra("user");
             usernameTextView.setText("Bem vindo, " + user.getName() + ". Você está atualmente no nível " + user.getLevel());
+            usernameTextView.setTextColor(Color.BLACK);
             usernameTextView.setGravity(Gravity.CENTER);
 
             button1 = new Button(this);
@@ -87,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
             if (data != null && data.hasExtra("user")) {
                 user = (User) data.getSerializableExtra("user");
                 usernameTextView.setText("Bem vindo, " + user.getName() + ". Você está atualmente no nível " + user.getLevel());
+                usernameTextView.setTextColor(Color.BLACK);
             }
         }
     }
