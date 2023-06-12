@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -31,13 +32,15 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("user")) {
             user = (User) intent.getSerializableExtra("user");
-            usernameTextView.setText("Bem vindo, " + user.getName() + "!");
+            usernameTextView.setText("Bem vindo, " + user.getName() + ". Você está atualmente no nível " + user.getLevel());
+            usernameTextView.setGravity(Gravity.CENTER);
 
             button1 = new Button(this);
             button2 = new Button(this);
             button3 = new Button(this);
 
             button1.setText("JOGAR");
+            button1.setTextAppearance(this, android.R.style.TextAppearance_Large);
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -48,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
             });
 
             button2.setText("RANKING");
+            button2.setTextAppearance(this, android.R.style.TextAppearance_Large);
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -58,6 +62,7 @@ public class HomeActivity extends AppCompatActivity {
             });
 
             button3.setText("PERFIL");
+            button3.setTextAppearance(this, android.R.style.TextAppearance_Large);
             button3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
         if (requestCode == NEW_SCREEN_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null && data.hasExtra("user")) {
                 user = (User) data.getSerializableExtra("user");
-                usernameTextView.setText("Bem vindo, " + user.getName() + "!");
+                usernameTextView.setText("Bem vindo, " + user.getName() + ". Você está atualmente no nível " + user.getLevel());
             }
         }
     }

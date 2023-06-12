@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
 
         // Create the test user
-        this.user = new User("user", "Zack", "w.zack@mail.com", "pass", 1);
+        this.user = new User("user", "Jefferson", "r.jefferson@mail.com", "pass", 1);
 
         // Set click listener for the login button
         loginButton.setOnClickListener(new View.OnClickListener() {
