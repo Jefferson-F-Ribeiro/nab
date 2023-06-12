@@ -48,6 +48,7 @@ public class StageOneActivity extends AppCompatActivity {
         counterTextView.setText("Placar: 0 pontos");
         counterTextView.setPadding(16, 16, 16, 16);
         counterTextView.setTextAppearance(this, android.R.style.TextAppearance_Large);
+        counterTextView.setTextColor(Color.BLACK);
         rootLayout.addView(counterTextView);
 
         timerTextView = new TextView(this);
@@ -58,6 +59,7 @@ public class StageOneActivity extends AppCompatActivity {
         timerTextView.setText("Tempo: 30");
         timerTextView.setPadding(16, 16, 16, 16);
         timerTextView.setTextAppearance(this, android.R.style.TextAppearance_Large);
+        timerTextView.setTextColor(Color.BLACK);
         rootLayout.addView(timerTextView);
 
         counter = 0;
