@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize the UI components
+        // Inicializa componentes de texto da UI
         usernameEditText = findViewById(R.id.usernameEditText);
         usernameEditText.setTextColor(Color.BLACK);
         usernameEditText.setHintTextColor(Color.BLACK);
@@ -32,29 +32,29 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText.setHintTextColor(Color.BLACK);
         loginButton = findViewById(R.id.loginButton);
 
-        // Create the test user
+        // Cria o test user
         this.user = new User("user", "Jefferson", "r.jefferson@mail.com", "pass", 1);
 
-        // Set click listener for the login button
+        // Define o click listener para o login button
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the entered username and password
+                // Recebe username and password
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
 
-                // Check if the entered username and password are valid
+                // Valida o username e password
                 if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-                    // Login successful, show a toast message
+                    // Toast de login bem sucedido
                     Toast.makeText(MainActivity.this, "Login feito com sucesso!", Toast.LENGTH_SHORT).show();
 
-                // Redirect to the HomeActivity and pass the username as an extra
+                // Redireciona para o HomeActivity passando o user como extra
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     intent.putExtra("user", user);
                     startActivity(intent);
                 } else {
-                    // Login failed, show an error toast message
+                    // Toast de falha no login
                     Toast.makeText(MainActivity.this, "Senha ou usuário inválidos.", Toast.LENGTH_SHORT).show();
                 }
             }

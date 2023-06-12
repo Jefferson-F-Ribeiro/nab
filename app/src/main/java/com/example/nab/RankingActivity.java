@@ -20,13 +20,11 @@ public class RankingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
-        // Get the User object passed from the HomeActivity
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("user")) {
             this.user = (User) intent.getSerializableExtra("user");
         }
 
-        // Create a button dynamically
         Button backButton = new Button(this);
         backButton.setText("Voltar");
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -36,11 +34,9 @@ public class RankingActivity extends AppCompatActivity {
         params.setMargins(0, 16, 0, 0);
         backButton.setLayoutParams(params);
 
-        // Set click listener for the button
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Return to the HomeActivity
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("user", user);
                 setResult(RESULT_OK, returnIntent);
@@ -50,7 +46,6 @@ public class RankingActivity extends AppCompatActivity {
 
         LinearLayout layout = findViewById(R.id.rankingLayout);
 
-        // Add 10 TextView elements
         for (int i = 0; i < 4; i++) {
             TextView textView = new TextView(this);
             textView.setTextAppearance(this, android.R.style.TextAppearance_Large);
@@ -63,7 +58,6 @@ public class RankingActivity extends AppCompatActivity {
             layout.addView(textView);
         }
 
-        // Add the button to the layout
         layout.addView(backButton);
     }
 }

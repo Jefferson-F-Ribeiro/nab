@@ -10,7 +10,6 @@ public class User implements Serializable {
     private int level;
 
     public User() {
-        // Default constructor
     }
 
     public User(String username, String name, String email, String password, int level) {
@@ -21,7 +20,6 @@ public class User implements Serializable {
         this.level = level;
     }
 
-    // Getter and setter methods here...
 
     public String getUsername() {
         return username;

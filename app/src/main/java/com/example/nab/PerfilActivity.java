@@ -21,19 +21,19 @@ public class PerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        // Get the User object passed from the HomeActivity
+        // Recebe o user object da HomeActivity
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("user")) {
             this.user = (User) intent.getSerializableExtra("user");
         }
 
-        // Create text fields for changing user info
+        // Cria text fields para modificar os atributos
         nameEditText = new EditText(this);
         nameEditText.setText(user.getName());
         emailEditText = new EditText(this);
         emailEditText.setText(user.getEmail());
 
-        // Create the back button
+        // Cria o botão de retorno
         Button backButton = new Button(this);
         backButton.setText("Voltar");
         LinearLayout.LayoutParams backButtonParams = new LinearLayout.LayoutParams(
@@ -43,17 +43,17 @@ public class PerfilActivity extends AppCompatActivity {
         backButtonParams.setMargins(0, 16, 0, 0);
         backButton.setLayoutParams(backButtonParams);
 
-        // Set click listener for the back button
+        // Define o click listener para o botão de retorno
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Return to the HomeActivity without saving changes
+                // Retorna para o HomeActivity sem salvar as mudanças
                 setResult(RESULT_CANCELED);
                 finish();
             }
         });
 
-        // Create the save button
+        // Cria o botão de salvar
         Button saveButton = new Button(this);
         saveButton.setText("Salvar");
         LinearLayout.LayoutParams saveButtonParams = new LinearLayout.LayoutParams(
@@ -63,15 +63,15 @@ public class PerfilActivity extends AppCompatActivity {
         saveButtonParams.setMargins(0, 16, 0, 0);
         saveButton.setLayoutParams(saveButtonParams);
 
-        // Set click listener for the save button
+        // Define o click listener para o botão de salvar
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Update the user information
+                // Atualiza informações do user
                 user.setName(nameEditText.getText().toString());
                 user.setEmail(emailEditText.getText().toString());
 
-                // Return to the HomeActivity with the updated user
+                // Retorna ao HomeActivity com o user atualizado
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("user", user);
                 setResult(RESULT_OK, returnIntent);
@@ -79,7 +79,7 @@ public class PerfilActivity extends AppCompatActivity {
             }
         });
 
-        // Add the text fields and buttons to the layout
+        // Adiciona os text fields e buttons ao layout
         LinearLayout layout = findViewById(R.id.perfilLayout);
         LinearLayout pfb = findViewById(R.id.profileButtonLayout);
         layout.addView(nameEditText);
@@ -90,7 +90,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Return to the HomeActivity without saving changes when the back button is pressed
+        // Retorna ao HomeActivity sem salvar as mudanças ao clicar no botão de retorno
         setResult(RESULT_CANCELED);
         super.onBackPressed();
     }
