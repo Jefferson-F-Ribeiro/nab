@@ -9,6 +9,8 @@ public class User implements Serializable {
     private String password;
     private int level;
 
+    private Ranking ranking;
+
     public User() {
     }
 
@@ -18,6 +20,7 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.level = level;
+        this.ranking = new Ranking();
     }
 
 
@@ -60,6 +63,8 @@ public class User implements Serializable {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public Ranking getRanking(){ return this.ranking; }
 
 }
 
