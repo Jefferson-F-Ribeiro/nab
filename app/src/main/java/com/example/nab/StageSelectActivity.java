@@ -16,6 +16,7 @@ public class StageSelectActivity extends AppCompatActivity {
 
     private User user;
     private static final int REQUEST_CODE_STAGE_ONE = 1;
+    private static final int REQUEST_CODE_STAGE_TWO = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class StageSelectActivity extends AppCompatActivity {
             ImageView imageView = new ImageView(this);
             if (i == 1) {
                 imageView.setImageResource(R.drawable.stage_one);
+            } else if (i == 2) {
+                imageView.setImageResource(R.drawable.stage_one);
             } else {
                 imageView.setImageResource(R.drawable.image_miniature);
             }
@@ -67,13 +70,17 @@ public class StageSelectActivity extends AppCompatActivity {
                         Intent intent = new Intent(StageSelectActivity.this, StageOneActivity.class);
                         intent.putExtra("user", user);
                         startActivityForResult(intent, REQUEST_CODE_STAGE_ONE);
+                    } else if (imageIndex == 2) {
+                        Intent intent = new Intent(StageSelectActivity.this, StageTwoActivity.class);
+                        intent.putExtra("user", user);
+                        startActivityForResult(intent, REQUEST_CODE_STAGE_TWO);
                     }
                 }
             });
 
             LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(450, 450);
             imageParams.gravity = Gravity.CENTER;
-            if (i != 1) {
+            if (i != 1 && i != 2) {
                 imageView.setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
                 imageView.setClickable(false);
             }
@@ -88,6 +95,10 @@ public class StageSelectActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_STAGE_ONE && resultCode == RESULT_OK) {
+            if (data != null && data.hasExtra("user")) {
+                user = (User) data.getSerializableExtra("user");
+            }
+        } else if (requestCode == REQUEST_CODE_STAGE_TWO && resultCode == RESULT_OK) {
             if (data != null && data.hasExtra("user")) {
                 user = (User) data.getSerializableExtra("user");
             }
