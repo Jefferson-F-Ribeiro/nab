@@ -21,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_STAGE_SELECT = 1;
 
     private User user;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,9 @@ public class HomeActivity extends AppCompatActivity {
             buttonLayout.addView(button2);
             buttonLayout.addView(button3);
         }
+
+        // Inicializa o DatabaseHelper
+        databaseHelper = new DatabaseHelper(this);
     }
 
     @Override
@@ -93,9 +97,19 @@ public class HomeActivity extends AppCompatActivity {
                 user.setLevel(updatedUser.getLevel());
                 user.setScoresStageOne(updatedUser.getScoresStageOne());
 
+                // Atualiza o usuário no banco de dados
+                databaseHelper.updateUser(user);
+
                 usernameTextView.setText("Bem vindo, " + user.getName() + ". Você está atualmente no nível " + user.getLevel());
                 usernameTextView.setTextColor(Color.BLACK);
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Fecha a conexão com o banco de dados ao encerrar a atividade
+        databaseHelper.close();
     }
 }

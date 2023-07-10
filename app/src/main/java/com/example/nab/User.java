@@ -6,6 +6,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class User implements Serializable {
+    public static final String TABLE_NAME = "users";
+    public static final String COLUMN_USERNAME = "username";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_PASSWORD = "password";
+    public static final String COLUMN_LEVEL = "level";
+    public static final String COLUMN_SCORES_STAGE_ONE = "scores_stage_one";
+    public static final String COLUMN_FIRST_LOGIN = "first_login";
+
     private String username;
     private String name;
     private String email;
