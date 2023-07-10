@@ -58,7 +58,7 @@ public class StageSelectActivity extends AppCompatActivity {
             if (i == 1) {
                 imageView.setImageResource(R.drawable.stage_one);
             } else if (i == 2) {
-                imageView.setImageResource(R.drawable.stage_one);
+                imageView.setImageResource(R.drawable.stage_two);
             } else {
                 imageView.setImageResource(R.drawable.image_miniature);
             }

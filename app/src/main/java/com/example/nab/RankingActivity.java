@@ -51,10 +51,8 @@ public class RankingActivity extends AppCompatActivity {
 
         LinearLayout layout = findViewById(R.id.rankingLayout);
 
-        // Limpa o layout antes de adicionar os scores atualizados
         layout.removeAllViews();
 
-        // Exibe os scores do Stage One
         for (int i = 0; i < scoresStageOne.size(); i++) {
             TextView textView = new TextView(this);
             textView.setTextAppearance(this, android.R.style.TextAppearance_Large);
@@ -67,7 +65,6 @@ public class RankingActivity extends AppCompatActivity {
             layout.addView(textView);
         }
 
-        // Exibe os scores do Stage Two
         for (int i = 0; i < scoresStageTwo.size(); i++) {
             TextView textView = new TextView(this);
             textView.setTextAppearance(this, android.R.style.TextAppearance_Large);

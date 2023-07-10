@@ -58,7 +58,6 @@ public class StageTwoActivity extends AppCompatActivity {
             progressBar.setProgress(currentQuestionIndex);
             scoreTextView.setText("Score: " + score);
 
-            // Carregar perguntas da API
             loadQuestions();
         }
 
@@ -116,18 +115,15 @@ public class StageTwoActivity extends AppCompatActivity {
     }
 
     private void finishGame() {
-        Toast.makeText(this, "Game Over! Final Score: " + score, Toast.LENGTH_SHORT).show();
-        // Atualizar pontuação do usuário
+        Toast.makeText(this, "Placar final: " + score, Toast.LENGTH_SHORT).show();
         user.addScoreStageTwo(score);
 
-        // Salvar alterações no banco de dados
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
         databaseHelper.updateUser(user);
 
-        // Voltar para a StageSelectActivity
         Intent intent = new Intent(StageTwoActivity.this, StageSelectActivity.class);
         intent.putExtra("user", user);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Limpa as atividades anteriores
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
     }

@@ -80,7 +80,6 @@ public class HomeActivity extends AppCompatActivity {
             buttonLayout.addView(button3);
         }
 
-        // Inicializa o DatabaseHelper
         databaseHelper = new DatabaseHelper(this);
     }
 
@@ -91,13 +90,12 @@ public class HomeActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_STAGE_SELECT && resultCode == RESULT_OK) {
             if (data != null && data.hasExtra("user")) {
                 User updatedUser = (User) data.getSerializableExtra("user");
-                // Atualiza os dados do objeto User existente com os dados do novo objeto User
+
                 user.setName(updatedUser.getName());
                 user.setEmail(updatedUser.getEmail());
                 user.setLevel(updatedUser.getLevel());
                 user.setScoresStageOne(updatedUser.getScoresStageOne());
 
-                // Atualiza o usuário no banco de dados
                 databaseHelper.updateUser(user);
 
                 usernameTextView.setText("Bem vindo, " + user.getName() + ". Você está atualmente no nível " + user.getLevel());
@@ -109,7 +107,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Fecha a conexão com o banco de dados ao encerrar a atividade
         databaseHelper.close();
     }
 }
