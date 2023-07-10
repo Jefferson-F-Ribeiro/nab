@@ -26,7 +26,9 @@ public class RankingActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra("user")) {
             this.user = (User) intent.getSerializableExtra("user");
         }
-        List<Integer> scores = user.getScoresStageOne();
+
+        List<Integer> scoresStageOne = user.getScoresStageOne();
+        List<Integer> scoresStageTwo = user.getScoresStageTwo();
 
         Button backButton = new Button(this);
         backButton.setText("Voltar");
@@ -52,13 +54,24 @@ public class RankingActivity extends AppCompatActivity {
         // Limpa o layout antes de adicionar os scores atualizados
         layout.removeAllViews();
 
-        // Obtém a lista de scores atualizada do objeto User
-
-
-        for (int i = 0; i < scores.size(); i++) {
+        // Exibe os scores do Stage One
+        for (int i = 0; i < scoresStageOne.size(); i++) {
             TextView textView = new TextView(this);
             textView.setTextAppearance(this, android.R.style.TextAppearance_Large);
-            textView.setText("Stage " + (i + 1) + ": " + scores.get(i) + " pontos");
+            textView.setText("[Stage 1] Rank " + (i + 1) + " - " + scoresStageOne.get(i) + " pontos");
+            textView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
+            textView.setGravity(Gravity.CENTER);
+            layout.addView(textView);
+        }
+
+        // Exibe os scores do Stage Two
+        for (int i = 0; i < scoresStageTwo.size(); i++) {
+            TextView textView = new TextView(this);
+            textView.setTextAppearance(this, android.R.style.TextAppearance_Large);
+            textView.setText("[Stage 2] Rank " + (i + 1) + " - " + scoresStageTwo.get(i) + " pontos");
             textView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT

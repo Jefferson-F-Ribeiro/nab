@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Inicializa componentes de texto da UI
-        usernameEditText = findViewById(R.id.usernameEditText);
-        usernameEditText.setTextColor(Color.BLACK);
-        usernameEditText.setHintTextColor(Color.BLACK);
-        passwordEditText = findViewById(R.id.passwordEditText);
-        passwordEditText.setTextColor(Color.BLACK);
-        passwordEditText.setHintTextColor(Color.BLACK);
+        //usernameEditText = findViewById(R.id.usernameEditText);
+        //usernameEditText.setTextColor(Color.BLACK);
+        //usernameEditText.setHintTextColor(Color.BLACK);
+        //passwordEditText = findViewById(R.id.passwordEditText);
+        //passwordEditText.setTextColor(Color.BLACK);
+        //passwordEditText.setHintTextColor(Color.BLACK);
         loginButton = findViewById(R.id.loginButton);
 
         // Inicializa o DatabaseHelper
@@ -46,25 +46,12 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Recebe username and password
-                String username = usernameEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-
-                // Valida o username e password
-                if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-                    // Toast de login bem sucedido
-                    Toast.makeText(MainActivity.this, "Login feito com sucesso!", Toast.LENGTH_SHORT).show();
-
                     // Redireciona para o HomeActivity passando o user como extra
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     intent.putExtra("user", user);
                     startActivity(intent);
-                } else {
-                    // Toast de falha no login
-                    Toast.makeText(MainActivity.this, "Senha ou usuário inválidos.", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
+            });
     }
 }
 

@@ -118,7 +118,7 @@ public class StageTwoActivity extends AppCompatActivity {
     private void finishGame() {
         Toast.makeText(this, "Game Over! Final Score: " + score, Toast.LENGTH_SHORT).show();
         // Atualizar pontuação do usuário
-        //user.addScoreStageTwo(score);
+        user.addScoreStageTwo(score);
 
         // Salvar alterações no banco de dados
         DatabaseHelper databaseHelper = new DatabaseHelper(this);

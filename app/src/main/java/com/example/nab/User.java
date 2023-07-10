@@ -13,6 +13,8 @@ public class User implements Serializable {
     public static final String COLUMN_PASSWORD = "password";
     public static final String COLUMN_LEVEL = "level";
     public static final String COLUMN_SCORES_STAGE_ONE = "scores_stage_one";
+
+    public static final String COLUMN_SCORES_STAGE_TWO = "scores_stage_two";
     public static final String COLUMN_FIRST_LOGIN = "first_login";
 
     private String username;
@@ -20,15 +22,17 @@ public class User implements Serializable {
     private String email;
     private String password;
     private int level;
-    private List<Integer> scoresStageOne;
+    private List<Integer> scoresStageOne, scoresStageTwo;
 
     private boolean firstLogin;
 
     public User() {
         this.firstLogin = true;
         scoresStageOne = new ArrayList<>();
+        scoresStageTwo = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             scoresStageOne.add(0);
+            scoresStageTwo.add(0);
         }
     }
 
@@ -41,8 +45,10 @@ public class User implements Serializable {
         this.firstLogin = true;
 
         scoresStageOne = new ArrayList<>();
+        scoresStageTwo = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             scoresStageOne.add(0);
+            scoresStageTwo.add(0);
         }
     }
 
@@ -94,11 +100,25 @@ public class User implements Serializable {
             scoresStageOne.remove(scoresStageOne.size() - 1);
         }
     }
+
+    public void addScoreStageTwo(int score) {
+        scoresStageTwo.add(score);
+        Collections.sort(scoresStageTwo, Collections.reverseOrder());
+        if (scoresStageTwo.size() > 5) {
+            scoresStageTwo.remove(scoresStageTwo.size() - 1);
+        }
+    }
     public List<Integer> getScoresStageOne() {
         return scoresStageOne;
     }
 
+    public List<Integer> getScoresStageTwo() {
+        return scoresStageTwo;
+    }
+
     public void setScoresStageOne(List<Integer> i){ this.scoresStageOne = i; }
+
+    public void setScoresStageTwo(List<Integer> i){ this.scoresStageTwo = i; }
 
     public void setFirstLogin(boolean b){ this.firstLogin = b; }
 

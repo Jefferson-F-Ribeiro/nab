@@ -20,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_LEVEL = "level";
     private static final String COLUMN_SCORES_STAGE_ONE = "scores_stage_one";
+    private static final String COLUMN_SCORES_STAGE_TWO = "scores_stage_two";
     private static final String COLUMN_FIRST_LOGIN = "first_login";
 
     public DatabaseHelper(Context context) {
@@ -35,6 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 User.COLUMN_PASSWORD + " TEXT, " +
                 User.COLUMN_LEVEL + " INTEGER, " +
                 User.COLUMN_SCORES_STAGE_ONE + " TEXT DEFAULT '', " +
+                User.COLUMN_SCORES_STAGE_TWO + " TEXT DEFAULT '', " +
                 User.COLUMN_FIRST_LOGIN + " INTEGER DEFAULT 0)";
 
         db.execSQL(createUsersTableQuery);
@@ -56,6 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PASSWORD, user.getPassword());
         values.put(COLUMN_LEVEL, user.getLevel());
         values.put(COLUMN_SCORES_STAGE_ONE, convertScoresToString(user.getScoresStageOne()));
+        values.put(COLUMN_SCORES_STAGE_TWO, convertScoresToString(user.getScoresStageTwo()));
         values.put(COLUMN_FIRST_LOGIN, user.getFirstLogin() ? 1 : 0);
 
         long id = db.insert(TABLE_USERS, null, values);
@@ -75,6 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 User.COLUMN_PASSWORD,
                 User.COLUMN_LEVEL,
                 User.COLUMN_SCORES_STAGE_ONE,
+                User.COLUMN_SCORES_STAGE_TWO,
                 User.COLUMN_FIRST_LOGIN
         };
 
@@ -96,6 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int passwordIndex = cursor.getColumnIndex(User.COLUMN_PASSWORD);
             int levelIndex = cursor.getColumnIndex(User.COLUMN_LEVEL);
             int scoresStageOneIndex = cursor.getColumnIndex(User.COLUMN_SCORES_STAGE_ONE);
+            int scoresStageTwoIndex = cursor.getColumnIndex(User.COLUMN_SCORES_STAGE_TWO);
             int firstLoginIndex = cursor.getColumnIndex(User.COLUMN_FIRST_LOGIN);
 
             String username = cursor.getString(usernameIndex);
@@ -104,6 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String password = cursor.getString(passwordIndex);
             int level = cursor.getInt(levelIndex);
             String scoresStageOneString = cursor.getString(scoresStageOneIndex);
+            String scoresStageTwoString = cursor.getString(scoresStageTwoIndex);
             boolean firstLogin = cursor.getInt(firstLoginIndex) == 1;
 
             List<Integer> scoresStageOne = new ArrayList<>();
@@ -114,8 +120,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             }
 
+            List<Integer> scoresStageTwo = new ArrayList<>();
+            if (scoresStageTwoString != null && !scoresStageTwoString.isEmpty()) {
+                String[] scoresStageTwoArray = scoresStageTwoString.split(",");
+                for (String score : scoresStageTwoArray) {
+                    scoresStageTwo.add(Integer.parseInt(score));
+                }
+            }
+
             user = new User(username, name, email, password, level);
             user.setScoresStageOne(scoresStageOne);
+            user.setScoresStageTwo(scoresStageTwo);
             user.setFirstLogin(firstLogin);
         }
 
@@ -126,8 +141,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return user;
     }
-
-
 
     private String convertScoresToString(List<Integer> scores) {
         StringBuilder sb = new StringBuilder();
@@ -158,10 +171,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PASSWORD, user.getPassword());
         values.put(COLUMN_LEVEL, user.getLevel());
         values.put(COLUMN_SCORES_STAGE_ONE, convertScoresToString(user.getScoresStageOne()));
+        values.put(COLUMN_SCORES_STAGE_TWO, convertScoresToString(user.getScoresStageTwo()));
         values.put(COLUMN_FIRST_LOGIN, user.getFirstLogin() ? 1 : 0);
 
         db.update(TABLE_USERS, values, COLUMN_USERNAME + " = ?", new String[]{user.getUsername()});
         db.close();
     }
-
 }
