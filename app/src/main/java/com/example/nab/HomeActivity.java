@@ -18,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button button2;
     private Button button3;
 
-    private static final int NEW_SCREEN_REQUEST_CODE = 1;
+    private static final int REQUEST_CODE_STAGE_SELECT = 1;
 
     private User user;
 
@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(HomeActivity.this, StageSelectActivity.class);
                     intent.putExtra("user", user);
-                    startActivityForResult(intent, NEW_SCREEN_REQUEST_CODE);
+                    startActivityForResult(intent, REQUEST_CODE_STAGE_SELECT);
                 }
             });
 
@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(HomeActivity.this, RankingActivity.class);
                     intent.putExtra("user", user);
-                    startActivityForResult(intent, NEW_SCREEN_REQUEST_CODE);
+                    startActivityForResult(intent, REQUEST_CODE_STAGE_SELECT);
                 }
             });
 
@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
                     intent.putExtra("user", user);
-                    startActivityForResult(intent, NEW_SCREEN_REQUEST_CODE);
+                    startActivityForResult(intent, REQUEST_CODE_STAGE_SELECT);
                 }
             });
 
@@ -84,9 +84,15 @@ public class HomeActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == NEW_SCREEN_REQUEST_CODE && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_CODE_STAGE_SELECT && resultCode == RESULT_OK) {
             if (data != null && data.hasExtra("user")) {
-                user = (User) data.getSerializableExtra("user");
+                User updatedUser = (User) data.getSerializableExtra("user");
+                // Atualiza os dados do objeto User existente com os dados do novo objeto User
+                user.setName(updatedUser.getName());
+                user.setEmail(updatedUser.getEmail());
+                user.setLevel(updatedUser.getLevel());
+                user.setScoresStageOne(updatedUser.getScoresStageOne());
+
                 usernameTextView.setText("Bem vindo, " + user.getName() + ". Você está atualmente no nível " + user.getLevel());
                 usernameTextView.setTextColor(Color.BLACK);
             }

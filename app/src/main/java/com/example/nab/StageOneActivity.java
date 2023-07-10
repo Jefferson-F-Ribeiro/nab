@@ -2,6 +2,7 @@ package com.example.nab;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -22,6 +23,8 @@ public class StageOneActivity extends AppCompatActivity {
     private int counter;
     private CountDownTimer timer;
 
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,12 @@ public class StageOneActivity extends AppCompatActivity {
         rootLayout.setOrientation(LinearLayout.VERTICAL);
         rootLayout.setBackgroundColor(Color.WHITE);
         setContentView(rootLayout);
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("user")) {
+            this.user = (User) intent.getSerializableExtra("user");
+        }
+
 
         gameLayout = new LinearLayout(this);
         gameLayout.setLayoutParams(new LinearLayout.LayoutParams(
@@ -81,6 +90,10 @@ public class StageOneActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 showScoreToast();
+                user.addScoreStageOne(counter);
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("user", user);
+                setResult(RESULT_OK, returnIntent);
                 finish();
             }
         }.start();
@@ -130,6 +143,7 @@ public class StageOneActivity extends AppCompatActivity {
     }
 
     private void showScoreToast() {
+
         Toast toast = Toast.makeText(this, "Placar final: " + counter + " pontos", Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();

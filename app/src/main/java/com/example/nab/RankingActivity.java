@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class RankingActivity extends AppCompatActivity {
 
     private User user;
@@ -24,6 +26,7 @@ public class RankingActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra("user")) {
             this.user = (User) intent.getSerializableExtra("user");
         }
+        List<Integer> scores = user.getScoresStageOne();
 
         Button backButton = new Button(this);
         backButton.setText("Voltar");
@@ -46,10 +49,16 @@ public class RankingActivity extends AppCompatActivity {
 
         LinearLayout layout = findViewById(R.id.rankingLayout);
 
-        for (int i = 0; i < 4; i++) {
+        // Limpa o layout antes de adicionar os scores atualizados
+        layout.removeAllViews();
+
+        // Obtém a lista de scores atualizada do objeto User
+
+
+        for (int i = 0; i < scores.size(); i++) {
             TextView textView = new TextView(this);
             textView.setTextAppearance(this, android.R.style.TextAppearance_Large);
-            textView.setText("Stage " + (i + 1) + ": 0 pontos");
+            textView.setText("Stage " + (i + 1) + ": " + scores.get(i) + " pontos");
             textView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT

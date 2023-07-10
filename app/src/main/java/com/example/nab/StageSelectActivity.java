@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 public class StageSelectActivity extends AppCompatActivity {
 
     private User user;
+    private static final int REQUEST_CODE_STAGE_ONE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +54,9 @@ public class StageSelectActivity extends AppCompatActivity {
             final int imageIndex = i;
 
             ImageView imageView = new ImageView(this);
-            if(i==1){
+            if (i == 1) {
                 imageView.setImageResource(R.drawable.stage_one);
-            }
-            else{
+            } else {
                 imageView.setImageResource(R.drawable.image_miniature);
             }
             imageView.setClickable(true);
@@ -66,7 +66,7 @@ public class StageSelectActivity extends AppCompatActivity {
                     if (imageIndex == 1) {
                         Intent intent = new Intent(StageSelectActivity.this, StageOneActivity.class);
                         intent.putExtra("user", user);
-                        startActivity(intent);
+                        startActivityForResult(intent, REQUEST_CODE_STAGE_ONE);
                     }
                 }
             });
@@ -81,5 +81,16 @@ public class StageSelectActivity extends AppCompatActivity {
         }
 
         layout.addView(backButton);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_STAGE_ONE && resultCode == RESULT_OK) {
+            if (data != null && data.hasExtra("user")) {
+                user = (User) data.getSerializableExtra("user");
+            }
+        }
     }
 }
